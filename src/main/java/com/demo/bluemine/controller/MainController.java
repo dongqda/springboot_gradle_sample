@@ -13,17 +13,17 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@RestController
+@Controller
 public class MainController {
 
 	@Resource(name = "com.demo.bluemine.service")
 	RootService service;
 
-	@RequestMapping(value="/", method= RequestMethod.GET)
-	@ResponseBody
-	public String test(HttpServletRequest request, HttpServletResponse response, Model model) {
+	@RequestMapping(value="/", method= {RequestMethod.POST,RequestMethod.GET})
+	public String index(HttpServletRequest request, HttpServletResponse response, Model model) {
 		String test = service.test();
 		model.addAttribute("test",test);
 		return "index";
 	}
+
 }
